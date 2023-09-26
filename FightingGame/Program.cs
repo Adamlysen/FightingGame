@@ -57,7 +57,7 @@ namespace bajshora
             Console.ReadLine();
             Console.WriteLine("The fight begins");
             Console.WriteLine($"{name1} and {name2} start engaging eachother");
-            
+            Console.ReadLine();
 
             
 
