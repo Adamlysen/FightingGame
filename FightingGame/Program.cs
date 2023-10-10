@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Security;
+using System.Security.Cryptography;
 
 namespace bajshora
 {
@@ -8,7 +9,7 @@ namespace bajshora
     class Program
     {
 
-        public static void Main(string[] args)
+        public static void Main(string[] args) // Main void som är huvuddelen i programmet
         {
 
 
@@ -43,16 +44,43 @@ namespace bajshora
 
 
 
-        public static void Gameplay1()
+        public static void Gameplay1() // Här är själva spelet som kommer köras
         {
             Random generator = new Random();
 
-            Console.WriteLine("Enter Player 1 Name:");
-            string name1 = Console.ReadLine();
+            Console.WriteLine("Enter Player Name:");
+            string name1 = Console.ReadLine();              // Namn på spelare 1
 
+            Console.WriteLine("Select Enemy:");
+            Console.WriteLine();
+            Console.WriteLine("1 - ROPENIS");
+            Console.WriteLine();
+            Console.WriteLine("2 - HORUNGE");
+            Console.WriteLine();
+            Console.WriteLine("3 - SATTAR");
 
-            Console.WriteLine("Enter Player 2 Name:");
-            string name2 = Console.ReadLine();
+            string selectenemy = Console.ReadLine();
+            string enemyplayer1 = "";
+
+            if (selectenemy == "1")
+            {
+
+                enemyplayer1 = "ROPENIS";
+
+            }
+
+            else if (selectenemy == "2")
+            {
+
+                enemyplayer1 = "HORUNGE";
+
+            }
+
+            else if (selectenemy == "3")
+            {
+
+                enemyplayer1 = "SATTAR";
+            }
 
             Console.WriteLine("Press enter to start the game");
 
@@ -61,11 +89,10 @@ namespace bajshora
 
 
             Console.WriteLine("The fight begins");
-            Console.WriteLine($"{name1} and {name2} start engaging eachother");
             Console.WriteLine();
 
-            int p1hp = 100;
-            int p2hp = 100;
+            int p1hp = 100;     // Hp för spelaren
+            int p2hp = 100;     // Hp för Motståndaren
 
             Thread.Sleep(2500);
 
@@ -81,19 +108,20 @@ namespace bajshora
 
                 Console.WriteLine($"{name1}: {p1hp} hp");
 
-                Console.WriteLine($"{name2}: {p2hp} hp");
+                Console.WriteLine($"{enemyplayer1}: {p2hp} hp");
 
                 Thread.Sleep(2500);
                 Console.WriteLine();
                 Console.WriteLine($"{name1} deals {p1damage}");
+
+
 
                 p2hp = p2hp - p1damage;
 
                 if (p1damage <= 10)
                 {
 
-                    Console.WriteLine("How can you be that bad???");
-                    Console.WriteLine($"Only {p1damage}???");
+                    Console.WriteLine("FUGGIN TRAAAAASHHH BRO AHAHAHAHAHH!!!");
                     Console.WriteLine();
                 }
                 else if (p1damage > 10 && p1damage < 20)
@@ -105,21 +133,20 @@ namespace bajshora
                 else
                 {
 
-                    Console.WriteLine("A MAGNIFICENT ROPENIS ATTACK!!!");
+                    Console.WriteLine("A MAGNIFICENT BOULLEEESSS ATTACK!!!");
                     Console.WriteLine();
                 }
 
                 Thread.Sleep(2500);
 
-                Console.WriteLine($"{name2} deals {p2damage}");
+                Console.WriteLine($"{enemyplayer1} deals {p2damage}");
 
                 p1hp = p1hp - p2damage;
 
                 if (p2damage <= 10)
                 {
 
-                    Console.WriteLine("How can you be that bad???");
-                    Console.WriteLine($"Only {p2damage}???");
+                    Console.WriteLine("FUGGIN TRAAAAASHHH BRO AHAHAHAHAHH!!!");
                     Console.WriteLine();
                 }
                 else if (p2damage > 10 && p2damage < 20)
@@ -131,32 +158,40 @@ namespace bajshora
                 else
                 {
 
-                    Console.WriteLine("A MAGNIFICENT ROPENIS ATTACK!!!");
+                    Console.WriteLine("A MAGNIFICENT BOULLEEESSS ATTACK!!!");
                     Console.WriteLine();
                 }
 
                 Thread.Sleep(2500);
 
-                if (p1hp > 0 && p2hp < 0)
-                {
-
-                    Console.WriteLine($"{name1} wins!");
-                    Console.WriteLine("Press enter to exit");
-
-                }
-                else if (p1hp < 0 && p2hp > 0)
-                {
-
-                    Console.WriteLine($"{name1} wins!");
-                    Console.WriteLine("Press enter to exit");
-
-                }
 
 
             }
 
+            if (p1hp >= 0 && p2hp <= 0)
+            {
 
-        }
+                Console.WriteLine("You win!");
+                Console.WriteLine("Press enter to exit");
+                Console.WriteLine();
+                Console.ReadLine();
+            }
+
+
+        
+                else if (p1hp< 0 && p2hp> 0)
+                {
+
+                    Console.WriteLine("You lost!");
+                    Console.WriteLine("Press Enter to exit");
+                    Console.WriteLine();
+                    Console.ReadLine();
+
+                }
+
+
+
+}
 
 
     }
